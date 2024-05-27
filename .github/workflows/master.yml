@@ -24,5 +24,6 @@ jobs:
           script: |
             cd /home/ubuntu/schedulet-test/Sheduler
             git pull
+            cd Sheduler
             sudo docker compose -f docker-compose.yml up --build  -d 
             echo "GOOD JOB"
