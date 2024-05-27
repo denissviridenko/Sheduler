@@ -22,8 +22,8 @@ jobs:
           command_timeout: "20m"
           script_stop: true
           script: |
-            cd /home/ubuntu/schedulet-test/Sheduler
+            cd /home/ubuntu/schedulet-test/Sheduler/Scheduler
+            ls
             git pull
-            cd Sheduler
             sudo docker compose -f docker-compose.yml up --build  -d 
             echo "GOOD JOB"
