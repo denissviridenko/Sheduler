@@ -1,0 +1,28 @@
+name: Dotnet CI/CD develop
+
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # When application is successfully tested and build has been generated
+    # Then we can start with deployment
+    steps:
+      - name: Remote pull and build docker
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.TEST_HOST }}
+          username: ${{ secrets.TEST_USERNAME }}
+          port: ${{ secrets.TEST_PORT }}
+          key: ${{ secrets.TEST_SSHKEY }}
+          command_timeout: "20m"
+          script_stop: true
+          script: |
+            cd /home/ubuntu/schedulet-test/Sheduler
+            git pull
+            sudo docker-compose -f docker-compose.yml up --build  -d 
+            echo "GOOD JOB"
