@@ -72,6 +72,7 @@ namespace Scheduler.Repository
         }
 
 
+
         private bool DisciplineExists(int id)
         {
             return db.Disciplines.Any(e => e.Id == id);
