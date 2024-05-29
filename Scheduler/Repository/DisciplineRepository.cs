@@ -44,7 +44,7 @@ namespace Scheduler.Repository
                 return new BadRequestResult();
             }
 
-            var existingDiscipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == id);
+            var existingDiscipline = await db.Disciplines.FindAsync(id);
             if (existingDiscipline == null)
             {
                 return new NotFoundResult();
@@ -68,8 +68,9 @@ namespace Scheduler.Repository
                 }
             }
 
-            return new ObjectResult(discipline) { StatusCode = StatusCodes.Status200OK };
+            return new OkObjectResult(discipline);
         }
+
 
         private bool DisciplineExists(int id)
         {

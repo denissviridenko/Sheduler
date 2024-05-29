@@ -42,24 +42,19 @@ public class DisciplineController : ControllerBase
     {
         if (discipline == null || id != discipline.Id)
         {
-            return BadRequest();
+            return BadRequest("Invalid discipline data.");
         }
 
-        var existingDiscipline = await _disciplineRepository.GetDisciplineById(id);
-        if (existingDiscipline == null)
+        var existingDisciplineResult = await _disciplineRepository.GetDisciplineById(id);
+        if (existingDisciplineResult.Result is NotFoundResult)
         {
             return NotFound();
         }
 
         var result = await _disciplineRepository.UpdateDisciplineById(id, discipline);
-
-        if (result == null)
-        {
-            return BadRequest();
-        }
-
-        return Ok(result.Value);
+        return result.Result;
     }
+
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<Discipline>> Delete(int id)
