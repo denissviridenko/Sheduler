@@ -72,18 +72,23 @@ namespace Scheduler.Controllers
         {
             if (studentGroup == null || id != studentGroup.Id)
             {
-                return BadRequest();
+                return BadRequest("Student group data is null or ID mismatch.");
             }
 
             var existingGroup = await _groupRepository.GetGroupById(id);
-            if (existingGroup == null)
+            if (existingGroup.Value == null)
             {
-                return NotFound();
+                return NotFound("Student group not found.");
             }
 
-            var result = await _groupRepository.UpdateGroupById(id, studentGroup); 
+            var result = await _groupRepository.UpdateGroupById(id, studentGroup);
 
-            return result.Result; 
+            if (result == null)
+            {
+                return BadRequest("Failed to update student group.");
+            }
+
+            return Ok(result.Value);
         }
 
 

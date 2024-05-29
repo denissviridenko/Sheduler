@@ -44,8 +44,8 @@ namespace Scheduler.Repository
                 return new BadRequestResult();
             }
 
-            var existingDiscipline = await GetDisciplineById(id);
-            if (existingDiscipline == null || !(existingDiscipline.Result is ObjectResult))
+            var existingDiscipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == id);
+            if (existingDiscipline == null)
             {
                 return new NotFoundResult();
             }
@@ -68,8 +68,14 @@ namespace Scheduler.Repository
                 }
             }
 
-            return discipline;
+            return new ObjectResult(discipline) { StatusCode = StatusCodes.Status200OK };
         }
+
+        private bool DisciplineExists(int id)
+        {
+            return db.Disciplines.Any(e => e.Id == id);
+        }
+
 
         public async Task<ActionResult<Discipline>> DeleteDiscipline(int disciplineId)
         {
@@ -94,9 +100,6 @@ namespace Scheduler.Repository
                 return true;
             }
         }
-        private bool DisciplineExists(int id)
-        {
-            return db.Disciplines.Any(e => e.Id == id);
-        }
+
     }
 }
