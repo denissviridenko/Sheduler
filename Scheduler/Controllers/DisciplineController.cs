@@ -53,6 +53,25 @@ namespace Scheduler.Controllers
             
             return Ok(discipline);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Discipline>> Put(int id, Discipline discipline)
+        {
+            if (discipline == null || id != discipline.Id)
+            {
+                return BadRequest();
+            }
+
+            var existingDiscipline = await _disciplineRepository.GetDisciplineById(id);
+            if (existingDiscipline == null)
+            {
+                return NotFound();
+            }
+
+            await _disciplineRepository.UpdateDiscipline(discipline);
+
+            return Ok(discipline);
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Discipline>> Delete(int id)
