@@ -42,17 +42,17 @@ namespace Scheduler.Controllers
 
             var result = await _groupProcessService.ProcessGroupInfo(studentGroup, true);
 
-           
-            if (result != null)
+            if (result != null && result.Value != null) 
             {
-                return Ok(result);
+               
+                return CreatedAtAction(nameof(Get), new { id = result.Value.Id }, result.Value);
             }
             else
             {
-               
                 return BadRequest();
             }
         }
+
 
 
         [HttpPut]
