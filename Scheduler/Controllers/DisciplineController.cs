@@ -53,6 +53,7 @@ namespace Scheduler.Controllers
             
             return Ok(discipline);
         }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<Discipline>> Put(int id, Discipline discipline)
         {
