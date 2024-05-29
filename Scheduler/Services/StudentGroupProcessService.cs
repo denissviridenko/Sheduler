@@ -20,7 +20,7 @@ namespace Scheduler.Services
 
             var sgpc = new StudentGroupProcessService(_groupRepository);
 
-            studentGroup = sgpc.CalculateParams(studentGroup);
+          /*  studentGroup = sgpc.CalculateParams(studentGroup);*/
 
             if (isNewGroup)
             {                

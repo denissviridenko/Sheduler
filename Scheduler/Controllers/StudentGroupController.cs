@@ -32,7 +32,6 @@ namespace Scheduler.Controllers
         {
             return await _groupRepository.GetGroupById(id);
         }
-
         [HttpPost]
         public async Task<ActionResult<StudentGroup>> Post(StudentGroup studentGroup)
         {
@@ -40,10 +39,21 @@ namespace Scheduler.Controllers
             {
                 return BadRequest();
             }
+
             var result = await _groupProcessService.ProcessGroupInfo(studentGroup, true);
 
-            return Ok(result);            
+           
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+               
+                return BadRequest();
+            }
         }
+
 
         [HttpPut]
         public async Task<ActionResult<StudentGroup>> Put(StudentGroup studentGroup)
