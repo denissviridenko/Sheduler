@@ -50,8 +50,8 @@ namespace Scheduler.Repository
                 return new NotFoundResult();
             }
 
-            db.Entry(discipline).State = EntityState.Modified;
-
+            existingDiscipline.DiciplineName = discipline.DiciplineName;
+          
             try
             {
                 await db.SaveChangesAsync();
@@ -70,6 +70,7 @@ namespace Scheduler.Repository
 
             return new OkObjectResult(discipline);
         }
+
 
 
 
