@@ -13,6 +13,9 @@ namespace Scheduler.Repository
 
         public Task<ActionResult<Discipline>> UpdateDiscipline(Discipline discipline);
 
+        public Task<ActionResult<Discipline>> UpdateDisciplineById(int id, Discipline discipline);
+
+
         public Task<ActionResult<Discipline>> DeleteDiscipline(int disciplineId);
 
         public bool CheckIfDisciplineExists(Discipline discipline);

@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Scheduler.Model;
 using Scheduler.Services;
 using Scheduler.Repository;
-using System.Text.RegularExpressions;
 
 
 
@@ -15,9 +14,9 @@ namespace Scheduler.Controllers
     public class StudentGroupController : ControllerBase
     {
         IStudentGroupProcessService _groupProcessService;
-        IStudentGroupRepository _groupRepository;
+        IStudentGroupRepository _groupRepository;        
         public StudentGroupController(IStudentGroupProcessService groupProcessService, IStudentGroupRepository groupRepository)
-        {
+        {           
             _groupProcessService = groupProcessService;
             _groupRepository = groupRepository;
         }
@@ -43,7 +42,7 @@ namespace Scheduler.Controllers
             }
             var result = await _groupProcessService.ProcessGroupInfo(studentGroup, true);
 
-            return Ok(result);
+            return Ok(result);            
         }
 
         [HttpPut]
@@ -57,6 +56,7 @@ namespace Scheduler.Controllers
 
             return Ok(result);
         }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<StudentGroup>> Put(int id, StudentGroup studentGroup)
         {
@@ -71,9 +71,9 @@ namespace Scheduler.Controllers
                 return NotFound();
             }
 
-            await _groupRepository.UpdateGroup(studentGroup);
+            var result = await _groupRepository.UpdateGroupById(id, studentGroup); 
 
-            return Ok(studentGroup);
+            return result.Result; 
         }
 
 

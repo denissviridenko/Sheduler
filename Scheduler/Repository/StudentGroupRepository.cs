@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Scheduler.Model;
-using Scheduler.Services;
-using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Scheduler.Repository 
+namespace Scheduler.Repository
 {
     public class StudentGroupRepository : IStudentGroupRepository
     {
         private ApplicationContext db;
+
         public StudentGroupRepository(ApplicationContext context)
         {
-            db = context;            
+            db = context;
         }
 
         public async Task<ActionResult<IEnumerable<StudentGroup>>> GetAllGroups()
@@ -22,22 +23,55 @@ namespace Scheduler.Repository
 
         public async Task<ActionResult<StudentGroup>> GetGroupById(int id)
         {
-            StudentGroup studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == id);            
+            StudentGroup studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == id);
             return new ObjectResult(studentGroup);
         }
 
         public async Task<ActionResult<StudentGroup>> CreateGroup(StudentGroup studentGroup)
         {
-                
             db.StudentGroups.Add(studentGroup);
             await db.SaveChangesAsync();
             return studentGroup;
         }
 
         public async Task<ActionResult<StudentGroup>> UpdateGroup(StudentGroup studentGroup)
-        {    
+        {
             db.StudentGroups.Update(studentGroup);
             await db.SaveChangesAsync();
+            return studentGroup;
+        }
+
+        public async Task<ActionResult<StudentGroup>> UpdateGroupById(int id, StudentGroup studentGroup)
+        {
+            if (id != studentGroup.Id)
+            {
+                return new BadRequestResult();
+            }
+
+            var existingGroup = await GetGroupById(id);
+            if (existingGroup == null || !(existingGroup.Result is ObjectResult))
+            {
+                return new NotFoundResult();
+            }
+
+            db.Entry(studentGroup).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GroupExists(id))
+                {
+                    return new NotFoundResult();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
             return studentGroup;
         }
 
@@ -63,6 +97,11 @@ namespace Scheduler.Repository
             {
                 return true;
             }
+        }
+
+        private bool GroupExists(int id)
+        {
+            return db.StudentGroups.Any(e => e.Id == id);
         }
     }
 }

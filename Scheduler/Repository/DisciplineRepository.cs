@@ -37,6 +37,39 @@ namespace Scheduler.Repository
             await db.SaveChangesAsync();
             return discipline;
         }
+        public async Task<ActionResult<Discipline>> UpdateDisciplineById(int id, Discipline discipline)
+        {
+            if (id != discipline.Id)
+            {
+                return new BadRequestResult();
+            }
+
+            var existingDiscipline = await GetDisciplineById(id);
+            if (existingDiscipline == null || !(existingDiscipline.Result is ObjectResult))
+            {
+                return new NotFoundResult();
+            }
+
+            db.Entry(discipline).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DisciplineExists(id))
+                {
+                    return new NotFoundResult();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return discipline;
+        }
 
         public async Task<ActionResult<Discipline>> DeleteDiscipline(int disciplineId)
         {
@@ -60,6 +93,10 @@ namespace Scheduler.Repository
             {
                 return true;
             }
+        }
+        private bool DisciplineExists(int id)
+        {
+            return db.Disciplines.Any(e => e.Id == id);
         }
     }
 }
