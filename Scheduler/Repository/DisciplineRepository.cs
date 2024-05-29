@@ -50,8 +50,9 @@ namespace Scheduler.Repository
                 return new NotFoundResult();
             }
 
-            existingDiscipline.DiciplineName = discipline.DiciplineName;
-          
+            existingDiscipline.Name = discipline.Name;
+            existingDiscipline.Description = discipline.Description;
+
             try
             {
                 await db.SaveChangesAsync();
@@ -70,6 +71,7 @@ namespace Scheduler.Repository
 
             return new OkObjectResult(discipline);
         }
+
 
 
 
