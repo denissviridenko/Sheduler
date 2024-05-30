@@ -48,33 +48,10 @@ namespace Scheduler.Controllers
             {
                 return BadRequest();
             }
-            
+
             await _disciplineRepository.UpdateDiscipline(discipline);
-            
+
             return Ok(discipline);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Discipline>> Put(int id, Discipline discipline)
-        {
-            if (discipline == null)
-            {
-                return BadRequest("Discipline data is null.");
-            }
-
-            if (id != discipline.Id)
-            {
-                return BadRequest("ID in the URL does not match ID in the discipline data.");
-            }
-
-            var existingDisciplineResult = await _disciplineRepository.GetDisciplineById(id);
-            if (existingDisciplineResult.Result is NotFoundResult)
-            {
-                return NotFound("Discipline not found.");
-            }
-
-            var result = await _disciplineRepository.UpdateDisciplineById(id, discipline);
-            return result.Result;
         }
 
         [HttpDelete("{id}")]

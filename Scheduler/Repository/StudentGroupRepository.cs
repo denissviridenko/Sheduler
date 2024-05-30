@@ -41,39 +41,7 @@ namespace Scheduler.Repository
             return studentGroup;
         }
 
-        public async Task<ActionResult<StudentGroup>> UpdateGroupById(int id, StudentGroup studentGroup)
-        {
-            if (id != studentGroup.Id)
-            {
-                return new BadRequestResult();
-            }
-
-            var existingGroup = await GetGroupById(id);
-            if (existingGroup == null || !(existingGroup.Result is ObjectResult))
-            {
-                return new NotFoundResult();
-            }
-
-            db.Entry(studentGroup).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GroupExists(id))
-                {
-                    return new NotFoundResult();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return studentGroup;
-        }
+      
 
         public async Task<ActionResult<StudentGroup>> DeleteGroup(int groupId)
         {
