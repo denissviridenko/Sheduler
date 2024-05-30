@@ -40,9 +40,6 @@ namespace Scheduler.Repository
             await db.SaveChangesAsync();
             return studentGroup;
         }
-
-      
-
         public async Task<ActionResult<StudentGroup>> DeleteGroup(int groupId)
         {
             StudentGroup studentGroup = db.StudentGroups.FirstOrDefault(x => x.Id == groupId);

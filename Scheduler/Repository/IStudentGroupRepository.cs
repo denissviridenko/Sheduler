@@ -12,8 +12,7 @@ namespace Scheduler.Repository
         public Task<ActionResult<StudentGroup>> CreateGroup(StudentGroup studentGroup);
 
         public Task<ActionResult<StudentGroup>> UpdateGroup(StudentGroup studentGroup);
-        public Task<ActionResult<StudentGroup>> UpdateGroupById(int id, StudentGroup studentGroup);
-
+     
         public Task<ActionResult<StudentGroup>> DeleteGroup(int groupId);
 
         public bool CheckIfGroupExists(StudentGroup studentGroup);
