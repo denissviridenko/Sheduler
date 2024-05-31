@@ -53,9 +53,9 @@ namespace Scheduler.Controllers
         [HttpPut]
         public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
         {
-            if (dw == null)
+            if (dw == null || dw.Id == 0)
             {
-                return BadRequest("DepartmentWork cannot be null.");
+                return BadRequest("DepartmentWork ID is required for update.");
             }
 
             if (!db.DepartmentWorks.Any(x => x.Id == dw.Id))
@@ -66,11 +66,12 @@ namespace Scheduler.Controllers
             var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, null, null, false);
 
             // Обновление существующей записи в базе данных
-            db.DepartmentWorks.Update(dw);
+            db.Entry(dw).State = EntityState.Modified;
             await db.SaveChangesAsync();
 
             return Ok(dw);
         }
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<DepartmentWork>> Delete(int id)
