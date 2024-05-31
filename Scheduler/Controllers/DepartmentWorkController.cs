@@ -41,8 +41,6 @@ namespace Scheduler.Controllers
                 return BadRequest("DepartmentWork cannot be null.");
             }
 
-            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, null, null, true);
-
             // Добавление новой записи в базу данных
             db.DepartmentWorks.Add(dw);
             await db.SaveChangesAsync();
@@ -62,8 +60,6 @@ namespace Scheduler.Controllers
             {
                 return NotFound("DepartmentWork not found.");
             }
-
-            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, null, null, false);
 
             // Обновление существующей записи в базе данных
             db.Entry(dw).State = EntityState.Modified;

@@ -18,36 +18,7 @@ namespace Scheduler.Services
             _studentGroupRepository = studentGroupRepository;
         }
 
-        public async Task<ActionResult<DepartmentWork>> ProcessGroupInfo(DepartmentWork departmentWork, Discipline discipline, StudentGroup studentGroup, bool isNewDepartmentWork)
-        {
-            var dw = _departmentWorkRepository.CheckIfDepartmentWorkExists(departmentWork);
-
-            departmentWork = CalculateParams(departmentWork, studentGroup, discipline);
-            CalculateTotals("2023/2024");
-
-            if (isNewDepartmentWork)
-            {
-                if (!dw)
-                {
-                    return await _departmentWorkRepository.CreateDepartmentWork(departmentWork);
-                }
-                else
-                {
-                    return null;//группа с данным именем уже существет
-                }
-            }
-            else
-            {
-                if (!dw)
-                {
-                    return null;//невозможно обновить группу, группа не существует
-                }
-                else
-                {
-                    return await _departmentWorkRepository.UpdateDepartmentWork(departmentWork);
-                }
-            }
-        }
+      
 
         public DepartmentWork CalculateParams(DepartmentWork dw, StudentGroup studentGroup, Discipline discipline)
         {
