@@ -56,20 +56,15 @@ namespace Scheduler.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<DepartmentWork>> Put(int id, DepartmentWork dw)
+        [HttpPut]
+        public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
         {
             if (dw == null)
             {
                 return BadRequest("DepartmentWork cannot be null.");
             }
 
-            if (id != dw.Id)
-            {
-                return BadRequest("ID in the URL does not match ID in the data.");
-            }
-
-            var existingDepartmentWork = await db.DepartmentWorks.FindAsync(id);
+            var existingDepartmentWork = await db.DepartmentWorks.FindAsync(dw.Id);
             if (existingDepartmentWork == null)
             {
                 return NotFound("DepartmentWork not found.");
