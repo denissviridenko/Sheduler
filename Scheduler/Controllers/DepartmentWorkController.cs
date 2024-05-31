@@ -10,9 +10,8 @@ namespace Scheduler.Controllers
     [ApiController]
     public class DepartmentWorkController : ControllerBase
     {
-        private readonly ApplicationContext db;
-        private readonly IDepartmentWorkProcessService _departmentWorkProcessService;
-
+        private ApplicationContext db;
+        IDepartmentWorkProcessService _departmentWorkProcessService;
         public DepartmentWorkController(ApplicationContext context, IDepartmentWorkProcessService departmentWorkProcessService)
         {
             db = context;
@@ -28,10 +27,9 @@ namespace Scheduler.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<DepartmentWork>> Get(int id)
         {
-            var departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
+            DepartmentWork departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
             if (departmentWork == null)
                 return NotFound();
-
             return new ObjectResult(departmentWork);
         }
 
@@ -43,17 +41,13 @@ namespace Scheduler.Controllers
                 return BadRequest("DepartmentWork cannot be null.");
             }
 
-            var discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == dw.DiciplineId);
-            if (discipline == null)
-                return NotFound("Discipline not found.");
+            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, null, null, true);
 
-            var studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == dw.GroupId);
-            if (studentGroup == null)
-                return NotFound("StudentGroup not found.");
+            // Добавление новой записи в базу данных
+            db.DepartmentWorks.Add(dw);
+            await db.SaveChangesAsync();
 
-            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, discipline, studentGroup, true);
-
-            return Ok(result);
+            return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
 
         [HttpPut]
@@ -64,37 +58,28 @@ namespace Scheduler.Controllers
                 return BadRequest("DepartmentWork cannot be null.");
             }
 
-            var existingDepartmentWork = await db.DepartmentWorks.FindAsync(dw.Id);
-            if (existingDepartmentWork == null)
+            if (!db.DepartmentWorks.Any(x => x.Id == dw.Id))
             {
                 return NotFound("DepartmentWork not found.");
             }
 
-            var discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == dw.DiciplineId);
-            if (discipline == null)
-                return NotFound("Discipline not found.");
+            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, null, null, false);
 
-            var studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == dw.GroupId);
-            if (studentGroup == null)
-                return NotFound("StudentGroup not found.");
-
-            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, discipline, studentGroup, false);
-
-            db.Entry(existingDepartmentWork).CurrentValues.SetValues(dw);
+            // Обновление существующей записи в базе данных
+            db.DepartmentWorks.Update(dw);
             await db.SaveChangesAsync();
 
-            return Ok(existingDepartmentWork);
+            return Ok(dw);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<DepartmentWork>> Delete(int id)
         {
-            var departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
+            DepartmentWork departmentWork = db.DepartmentWorks.FirstOrDefault(x => x.Id == id);
             if (departmentWork == null)
             {
                 return NotFound();
             }
-
             db.DepartmentWorks.Remove(departmentWork);
             await db.SaveChangesAsync();
             return Ok(departmentWork);
