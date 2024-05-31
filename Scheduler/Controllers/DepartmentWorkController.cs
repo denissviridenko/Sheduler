@@ -10,8 +10,9 @@ namespace Scheduler.Controllers
     [ApiController]
     public class DepartmentWorkController : ControllerBase
     {
-        private ApplicationContext db;
-        IDepartmentWorkProcessService _departmentWorkProcessService;
+        private readonly ApplicationContext db;
+        private readonly IDepartmentWorkProcessService _departmentWorkProcessService;
+
         public DepartmentWorkController(ApplicationContext context, IDepartmentWorkProcessService departmentWorkProcessService)
         {
             db = context;
@@ -27,9 +28,10 @@ namespace Scheduler.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<DepartmentWork>> Get(int id)
         {
-            DepartmentWork departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
+            var departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
             if (departmentWork == null)
                 return NotFound();
+
             return new ObjectResult(departmentWork);
         }
 
@@ -38,54 +40,66 @@ namespace Scheduler.Controllers
         {
             if (dw == null)
             {
-                return BadRequest();
-            }            
+                return BadRequest("DepartmentWork cannot be null.");
+            }
 
-            Discipline discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == dw.DiciplineId);
+            var discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == dw.DiciplineId);
             if (discipline == null)
-                return NotFound();
-            StudentGroup studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == dw.GroupId);
+                return NotFound("Discipline not found.");
+
+            var studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == dw.GroupId);
             if (studentGroup == null)
-                return NotFound();
+                return NotFound("StudentGroup not found.");
+
             var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, discipline, studentGroup, true);
 
-
-            //db.DepartmentWorks.Add(dw);
-            //await db.SaveChangesAsync();
             return Ok(result);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<DepartmentWork>> Put(int id, DepartmentWork dw)
         {
             if (dw == null)
             {
-                return BadRequest();
+                return BadRequest("DepartmentWork cannot be null.");
             }
-            if (!db.DepartmentWorks.Any(x => x.Id == dw.Id))
+
+            if (id != dw.Id)
             {
-                return NotFound();
+                return BadRequest("ID in the URL does not match ID in the data.");
             }
 
-            Discipline discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == dw.DiciplineId);
-            if (discipline == null)
-                return NotFound();
-            StudentGroup studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == dw.GroupId);
-            if (studentGroup == null)
-                return NotFound();
-            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, discipline, studentGroup, true);
+            var existingDepartmentWork = await db.DepartmentWorks.FindAsync(id);
+            if (existingDepartmentWork == null)
+            {
+                return NotFound("DepartmentWork not found.");
+            }
 
-            return Ok(dw);
+            var discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == dw.DiciplineId);
+            if (discipline == null)
+                return NotFound("Discipline not found.");
+
+            var studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == dw.GroupId);
+            if (studentGroup == null)
+                return NotFound("StudentGroup not found.");
+
+            var result = await _departmentWorkProcessService.ProcessGroupInfo(dw, discipline, studentGroup, false);
+
+            db.Entry(existingDepartmentWork).CurrentValues.SetValues(dw);
+            await db.SaveChangesAsync();
+
+            return Ok(existingDepartmentWork);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<DepartmentWork>> Delete(int id)
         {
-            DepartmentWork departmentWork = db.DepartmentWorks.FirstOrDefault(x => x.Id == id);
+            var departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
             if (departmentWork == null)
             {
                 return NotFound();
             }
+
             db.DepartmentWorks.Remove(departmentWork);
             await db.SaveChangesAsync();
             return Ok(departmentWork);

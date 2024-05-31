@@ -47,15 +47,15 @@
   },
   {
     "ContainingType": "Scheduler.Controllers.DepartmentWorkController",
-    "Method": "Put",
-    "RelativePath": "api/DepartmentWork",
-    "HttpMethod": "PUT",
+    "Method": "Get",
+    "RelativePath": "api/DepartmentWork/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dw",
-        "Type": "Scheduler.Model.DepartmentWork",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -73,15 +73,20 @@
   },
   {
     "ContainingType": "Scheduler.Controllers.DepartmentWorkController",
-    "Method": "Get",
+    "Method": "Put",
     "RelativePath": "api/DepartmentWork/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dw",
+        "Type": "Scheduler.Model.DepartmentWork",
         "IsRequired": true
       }
     ],
@@ -206,37 +211,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Scheduler.Model.Discipline",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Scheduler.Controllers.DisciplineController",
-    "Method": "Put",
-    "RelativePath": "api/Discipline/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "discipline",
-        "Type": "Scheduler.Model.Discipline",
         "IsRequired": true
       }
     ],
@@ -387,37 +361,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Scheduler.Model.StudentGroup",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Scheduler.Controllers.StudentGroupController",
-    "Method": "Put",
-    "RelativePath": "api/StudentGroup/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "studentGroup",
-        "Type": "Scheduler.Model.StudentGroup",
         "IsRequired": true
       }
     ],
