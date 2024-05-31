@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Scheduler.Model;
 using Scheduler.Repository;
+using System;
 
 namespace Scheduler.Services
 {
@@ -21,11 +22,8 @@ namespace Scheduler.Services
         {
             var dw = _departmentWorkRepository.CheckIfDepartmentWorkExists(departmentWork);
 
-            
-            var dwps = new DepartmentWorkProcessService(_departmentWorkRepository, _disciplineRepository, _studentGroupRepository);
-
-            departmentWork = dwps.CalculateParams(departmentWork, studentGroup, discipline);
-            dwps.CalculateTotals("2023/2024");
+            departmentWork = CalculateParams(departmentWork, studentGroup, discipline);
+            CalculateTotals("2023/2024");
 
             if (isNewDepartmentWork)
             {
@@ -52,12 +50,10 @@ namespace Scheduler.Services
         }
 
         public DepartmentWork CalculateParams(DepartmentWork dw, StudentGroup studentGroup, Discipline discipline)
-        {            
-
+        {
             dw.LecturesTotal = studentGroup.NumberOfStreams * discipline.LecturesAccodingToPlan;
             dw.LabWorkTotal = studentGroup.NumberOfSubgroups * discipline.LabWorkAccordingToPlan;
             dw.PracticeTotal = studentGroup.NumberOfSubgroups * discipline.PracticeAccordingToPlan;
-
 
             if (discipline.ExamFlag)
             {
@@ -106,7 +102,6 @@ namespace Scheduler.Services
             {
                 dw.GEKGAK = studentGroup.NumberOfStudentsBudget * 2;
             }
-           
 
             dw.TotalHours = dw.ModularRatingSystem + dw.IndividualSessions + dw.CourseProject + dw.Consultations + dw.TestsReview + dw.Offsets + dw.Exams + dw.EducationalPractice
                 + dw.ProductionPractice + dw.DiplomaDesign + dw.GEKGAK + dw.PostgraduateAndMasterDegree + dw.LecturesTotal + dw.LabWorkTotal + dw.PracticeTotal;
@@ -117,8 +112,7 @@ namespace Scheduler.Services
         public DepartmentWork CalculateTotals(string semestrYear)
         {
             var totals = _departmentWorkRepository.GetAllDepartmentWorksByStadyYear(semestrYear);
-
-
+            // Здесь должен быть ваш код для расчета итогов
             return null;
         }
     }
