@@ -7,6 +7,7 @@ namespace Scheduler.Model
         [Key]
         public int Id { get; set; }
       
+        public string departmentWorkName { get; set; } = "";
         public int DiciplineId { get; set; }               
 
         public int GroupId { get; set; }
