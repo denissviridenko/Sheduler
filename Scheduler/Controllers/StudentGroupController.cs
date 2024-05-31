@@ -54,7 +54,6 @@ namespace Scheduler.Controllers
         }
 
 
-
         [HttpPut]
         public async Task<ActionResult<StudentGroup>> Put(StudentGroup studentGroup)
         {
@@ -66,31 +65,6 @@ namespace Scheduler.Controllers
 
             return Ok(result);
         }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<StudentGroup>> Put(int id, StudentGroup studentGroup)
-        {
-            if (studentGroup == null || id != studentGroup.Id)
-            {
-                return BadRequest("Student group data is null or ID mismatch.");
-            }
-
-            var existingGroup = await _groupRepository.GetGroupById(id);
-            if (existingGroup.Value == null)
-            {
-                return NotFound("Student group not found.");
-            }
-
-            var result = await _groupRepository.UpdateGroupById(id, studentGroup);
-
-            if (result == null)
-            {
-                return BadRequest("Failed to update student group.");
-            }
-
-            return Ok(result.Value);
-        }
-
 
         [HttpDelete("{groupId}")]
         public async Task<ActionResult<StudentGroup>> Delete(int groupId)
