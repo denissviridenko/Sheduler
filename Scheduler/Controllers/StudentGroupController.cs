@@ -70,12 +70,16 @@ namespace Scheduler.Controllers
                 return BadRequest("Invalid student group data.");
             }
 
+            // Проверка существования группы по идентификатору
             var existingGroupResult = await _groupRepository.GetGroupById(studentGroup.Id);
             if (existingGroupResult == null || existingGroupResult.Value == null)
             {
-                return NotFound();
+                return NotFound($"Group with ID {studentGroup.Id} not found.");
             }
 
+            var existingGroup = existingGroupResult.Value;
+
+            // Обновление группы
             var updatedGroupResult = await _groupRepository.UpdateGroup(studentGroup);
             if (updatedGroupResult == null || updatedGroupResult.Value == null)
             {
