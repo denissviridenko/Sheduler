@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:controllers\\studentgroupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\services\\studentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:services\\studentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\services\\istudentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:services\\istudentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\controllers\\departmentworkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:controllers\\departmentworkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\controllers\\disciplinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:controllers\\disciplinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\services\\studentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:services\\studentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\services\\istudentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:services\\istudentgroupprocessservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\repository\\disciplinerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -104,14 +104,27 @@
               "RelativeDocumentMoniker": "Controllers\\StudentGroupController.cs",
               "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\StudentGroupController.cs",
               "RelativeToolTip": "Controllers\\StudentGroupController.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAYwEkAAABEAAAA",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAwFIAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-29T15:26:41.262Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "IStudentGroupProcessService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\IStudentGroupProcessService.cs",
+              "RelativeDocumentMoniker": "Services\\IStudentGroupProcessService.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\IStudentGroupProcessService.cs",
+              "RelativeToolTip": "Services\\IStudentGroupProcessService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T14:51:12.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "DisciplineController.cs",
               "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DisciplineController.cs",
               "RelativeDocumentMoniker": "Controllers\\DisciplineController.cs",
@@ -125,19 +138,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DepartmentWorkController.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DepartmentWorkController.cs",
-              "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
-              "RelativeToolTip": "Controllers\\DepartmentWorkController.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAAwCoAAAAAAAAA",
+              "Title": "StudentGroupProcessService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\StudentGroupProcessService.cs",
+              "RelativeDocumentMoniker": "Services\\StudentGroupProcessService.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\StudentGroupProcessService.cs",
+              "RelativeToolTip": "Services\\StudentGroupProcessService.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAIA4wBAAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:50:22.232Z",
+              "WhenOpened": "2024-05-29T14:51:13.332Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "IDepartmentWorkProcessService.cs",
               "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\IDepartmentWorkProcessService.cs",
               "RelativeDocumentMoniker": "Services\\IDepartmentWorkProcessService.cs",
@@ -151,6 +164,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DepartmentWorkController.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DepartmentWorkController.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
+              "RelativeToolTip": "Controllers\\DepartmentWorkController.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAAwCoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T15:50:22.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "DepartmentWorkProcessService.cs",
               "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\DepartmentWorkProcessService.cs",
               "RelativeDocumentMoniker": "Services\\DepartmentWorkProcessService.cs",
@@ -159,32 +185,6 @@
               "ViewState": "AQIAAB8AAAAAAAAAAAAAwBQAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-29T15:53:52.256Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StudentGroupProcessService.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\StudentGroupProcessService.cs",
-              "RelativeDocumentMoniker": "Services\\StudentGroupProcessService.cs",
-              "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\StudentGroupProcessService.cs",
-              "RelativeToolTip": "Services\\StudentGroupProcessService.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAQwDAAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T14:51:13.332Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IStudentGroupProcessService.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\IStudentGroupProcessService.cs",
-              "RelativeDocumentMoniker": "Services\\IStudentGroupProcessService.cs",
-              "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Services\\IStudentGroupProcessService.cs",
-              "RelativeToolTip": "Services\\IStudentGroupProcessService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T14:51:12.261Z",
               "EditorCaption": ""
             },
             {

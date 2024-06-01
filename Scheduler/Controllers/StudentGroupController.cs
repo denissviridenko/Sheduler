@@ -61,25 +61,14 @@ namespace Scheduler.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = updatedGroup.Id }, updatedGroup);
         }
-
         [HttpPut]
         public async Task<ActionResult<StudentGroup>> Put(StudentGroup studentGroup)
         {
             if (studentGroup == null)
             {
-                return BadRequest("Invalid student group data.");
+                return BadRequest();
             }
-
-            // Проверка существования группы по идентификатору
-            var existingGroupResult = await _groupRepository.GetGroupById(studentGroup.Id);
-            if (existingGroupResult == null || existingGroupResult.Value == null)
-            {
-                return NotFound($"Group with ID {studentGroup.Id} not found.");
-            }
-
-            var existingGroup = existingGroupResult.Value;
-
-            // Обновление группы
+            var result = await _groupProcessService.ProcessGroupInfo(studentGroup, false);
             var updatedGroupResult = await _groupRepository.UpdateGroup(studentGroup);
             if (updatedGroupResult == null || updatedGroupResult.Value == null)
             {
@@ -89,9 +78,9 @@ namespace Scheduler.Controllers
             var updatedGroup = updatedGroupResult.Value;
             var calculatedGroup = _groupProcessService.CalculateParams(updatedGroup);
             await _groupRepository.UpdateGroup(calculatedGroup);
-
-            return Ok(calculatedGroup);
+            return Ok(result);
         }
+       
 
         [HttpDelete("{groupId}")]
         public async Task<ActionResult> Delete(int groupId)
