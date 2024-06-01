@@ -49,12 +49,13 @@ namespace Scheduler.Controllers
                 return BadRequest("Student group data is null.");
             }
 
-            var createdGroup = await _groupRepository.CreateGroup(studentGroup);
-            if (createdGroup == null)
+            var createdGroupResult = await _groupRepository.CreateGroup(studentGroup);
+            if (createdGroupResult == null)
             {
                 return BadRequest("Failed to create the student group.");
             }
 
+            var createdGroup = createdGroupResult.Value;
             var updatedGroup = _groupProcessService.CalculateParams(createdGroup);
             await _groupRepository.UpdateGroup(updatedGroup);
 
@@ -69,18 +70,19 @@ namespace Scheduler.Controllers
                 return BadRequest("Invalid student group data.");
             }
 
-            var existingGroup = await _groupRepository.GetGroupById(studentGroup.Id);
-            if (existingGroup == null)
+            var existingGroupResult = await _groupRepository.GetGroupById(studentGroup.Id);
+            if (existingGroupResult == null || existingGroupResult.Value == null)
             {
                 return NotFound();
             }
 
-            var updatedGroup = await _groupRepository.UpdateGroup(studentGroup);
-            if (updatedGroup == null)
+            var updatedGroupResult = await _groupRepository.UpdateGroup(studentGroup);
+            if (updatedGroupResult == null || updatedGroupResult.Value == null)
             {
                 return BadRequest("Failed to update the student group.");
             }
 
+            var updatedGroup = updatedGroupResult.Value;
             var calculatedGroup = _groupProcessService.CalculateParams(updatedGroup);
             await _groupRepository.UpdateGroup(calculatedGroup);
 
@@ -90,8 +92,8 @@ namespace Scheduler.Controllers
         [HttpDelete("{groupId}")]
         public async Task<ActionResult> Delete(int groupId)
         {
-            var group = await _groupRepository.GetGroupById(groupId);
-            if (group == null)
+            var groupResult = await _groupRepository.GetGroupById(groupId);
+            if (groupResult == null || groupResult.Value == null)
             {
                 return NotFound();
             }
