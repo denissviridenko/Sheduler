@@ -62,7 +62,13 @@ namespace Scheduler.Services
                 studentGroup.NumberOfGroups = 1;
                 studentGroup.NumberOfSubgroups = 2;
             }
-            
+
+            else if (totalStudents  > 30)
+            {
+                studentGroup.NumberOfStreams = 1;
+                studentGroup.NumberOfGroups = 2;
+                studentGroup.NumberOfSubgroups = 2;
+            }
             return studentGroup;
         }
     }
