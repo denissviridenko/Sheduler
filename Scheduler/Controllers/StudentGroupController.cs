@@ -24,26 +24,21 @@ namespace Scheduler.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StudentGroup>>> Get()
         {
-            var groupsResult = await _groupRepository.GetAllGroups();
-            if (groupsResult == null)
-            {
-                return NotFound("No student groups found.");
-            }
-
-            return Ok(groupsResult.Value);
+            var groups = await _groupRepository.GetAllGroups();
+            return Ok(groups);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<StudentGroup>> Get(int id)
         {
-            var groupResult = await _groupRepository.GetGroupById(id);
+            var group = await _groupRepository.GetGroupById(id);
 
-            if (groupResult == null || groupResult.Value == null)
+            if (group == null)
             {
-                return NotFound($"Group with ID {id} not found.");
+                return NotFound();
             }
 
-            return Ok(groupResult.Value);
+            return Ok(group);
         }
 
         [HttpPost]
@@ -55,56 +50,37 @@ namespace Scheduler.Controllers
             }
 
             var createdGroupResult = await _groupRepository.CreateGroup(studentGroup);
-            if (createdGroupResult == null || createdGroupResult.Value == null)
+            if (createdGroupResult == null)
             {
                 return BadRequest("Failed to create the student group.");
             }
 
             var createdGroup = createdGroupResult.Value;
             var updatedGroup = _groupProcessService.CalculateParams(createdGroup);
-            var updatedGroupResult = await _groupRepository.UpdateGroup(updatedGroup);
+            await _groupRepository.UpdateGroup(updatedGroup);
 
-            if (updatedGroupResult == null || updatedGroupResult.Value == null)
-            {
-                return BadRequest("Failed to update the student group.");
-            }
-
-            return CreatedAtAction(nameof(Get), new { id = updatedGroupResult.Value.Id }, updatedGroupResult.Value);
+            return CreatedAtAction(nameof(Get), new { id = updatedGroup.Id }, updatedGroup);
         }
-
         [HttpPut]
         public async Task<ActionResult<StudentGroup>> Put(StudentGroup studentGroup)
         {
             if (studentGroup == null)
             {
-                return BadRequest("Invalid student group data.");
+                return BadRequest();
             }
-
-            // Проверка существования группы по идентификатору
-            var existingGroupResult = await _groupRepository.GetGroupById(studentGroup.Id);
-            if (existingGroupResult == null || existingGroupResult.Value == null)
-            {
-                return NotFound($"Group with ID {studentGroup.Id} not found.");
-            }
-
-            // Обновление группы
             var result = await _groupProcessService.ProcessGroupInfo(studentGroup, false);
-            if (result == null || result.Value == null)
-            {
-                return BadRequest("Failed to process the student group.");
-            }
-
-            var updatedGroup = result.Value;
-            var calculatedGroup = _groupProcessService.CalculateParams(updatedGroup);
-            var updatedGroupResult = await _groupRepository.UpdateGroup(calculatedGroup);
-
+            var updatedGroupResult = await _groupRepository.UpdateGroup(studentGroup);
             if (updatedGroupResult == null || updatedGroupResult.Value == null)
             {
                 return BadRequest("Failed to update the student group.");
             }
 
-            return Ok(updatedGroupResult.Value);
+            var updatedGroup = updatedGroupResult.Value;
+            var calculatedGroup = _groupProcessService.CalculateParams(updatedGroup);
+            await _groupRepository.UpdateGroup(calculatedGroup);
+            return Ok(result);
         }
+       
 
         [HttpDelete("{groupId}")]
         public async Task<ActionResult> Delete(int groupId)
@@ -112,7 +88,7 @@ namespace Scheduler.Controllers
             var groupResult = await _groupRepository.GetGroupById(groupId);
             if (groupResult == null || groupResult.Value == null)
             {
-                return NotFound($"Group with ID {groupId} not found.");
+                return NotFound();
             }
 
             await _groupRepository.DeleteGroup(groupId);
