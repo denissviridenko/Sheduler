@@ -37,12 +37,12 @@ namespace Scheduler.Controllers
             return new ObjectResult(departmentWork);
         }
         [HttpGet("{id}/excel")]
-        public async Task<IActionResult> ExportDataToExcel(int id, DepartmentWork departmentWork)
+        public async Task<IActionResult> ExportDataToExcel(int id)
         {
             try
             {
                 // Получаем информацию о департаментной работе по идентификатору
-                DepartmentWork departmentWorks = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
+                DepartmentWork departmentWork = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
                 if (departmentWork == null)
                 {
                     return NotFound();
@@ -59,6 +59,7 @@ namespace Scheduler.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
         [HttpPost]
         public async Task<ActionResult<DepartmentWork>> Post(DepartmentWork dw)
         {
