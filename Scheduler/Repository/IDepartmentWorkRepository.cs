@@ -18,5 +18,7 @@ namespace Scheduler.Repository
         public Task<ActionResult<DepartmentWork>> DeleteDepartmentWork(int departmentWork);
 
         public bool CheckIfDepartmentWorkExists(DepartmentWork departmentWork);
+
+        byte[] GenerateExcelFile(DepartmentWork departmentWork);
     }
 }

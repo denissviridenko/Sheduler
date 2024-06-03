@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Scheduler.Model;
+using Scheduler.Repository;
 using Scheduler.Services;
 
 namespace Scheduler.Controllers
@@ -12,10 +13,13 @@ namespace Scheduler.Controllers
     {
         private ApplicationContext db;
         IDepartmentWorkProcessService _departmentWorkProcessService;
-        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkProcessService departmentWorkProcessService)
+        IDepartmentWorkRepository _departmentWorkRepository;
+       
+        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService )
         {
             db = context;
             _departmentWorkProcessService = departmentWorkProcessService;
+            _departmentWorkRepository = departmentWorkRepository;
         }
 
         [HttpGet]
@@ -32,7 +36,29 @@ namespace Scheduler.Controllers
                 return NotFound();
             return new ObjectResult(departmentWork);
         }
+        [HttpGet("{id}/excel")]
+        public async Task<IActionResult> ExportDataToExcel(int id, DepartmentWork departmentWork)
+        {
+            try
+            {
+                // Получаем информацию о департаментной работе по идентификатору
+                DepartmentWork departmentWorks = await db.DepartmentWorks.FirstOrDefaultAsync(x => x.Id == id);
+                if (departmentWork == null)
+                {
+                    return NotFound();
+                }
 
+                // Генерируем файл Excel на основе данных о департаментной работе
+                byte[] fileContent = _departmentWorkRepository.GenerateExcelFile(departmentWork);
+
+                // Возвращаем файл Excel в ответе
+                return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DepartmentWork.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         [HttpPost]
         public async Task<ActionResult<DepartmentWork>> Post(DepartmentWork dw)
         {

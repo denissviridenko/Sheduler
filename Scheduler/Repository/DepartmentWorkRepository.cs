@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Scheduler.Model;
 
@@ -64,6 +65,27 @@ namespace Scheduler.Repository
             else
             {
                 return true;
+            }
+        }
+        public byte[] GenerateExcelFile(DepartmentWork departmentWork)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("DepartmentWork");
+
+                worksheet.Cell(1, 1).Value = "CourseProject";
+                worksheet.Cell(1, 2).Value = "TestsReview";
+                worksheet.Cell(1, 3).Value = "Exams";
+
+                worksheet.Cell(2, 1).Value = departmentWork.CourseProject;
+                worksheet.Cell(2, 2).Value = departmentWork.TestsReview;
+                worksheet.Cell(2, 3).Value = departmentWork.Exams;
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    return stream.ToArray();
+                }
             }
         }
     }

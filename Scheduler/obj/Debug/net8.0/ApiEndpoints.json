@@ -125,9 +125,9 @@
   },
   {
     "ContainingType": "Scheduler.Controllers.DepartmentWorkController",
-    "Method": "ExportToExcel",
-    "RelativePath": "api/DepartmentWork/ExportToExcel/{id}",
-    "HttpMethod": "POST",
+    "Method": "ExportDataToExcel",
+    "RelativePath": "api/DepartmentWork/{id}/excel",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -135,21 +135,10 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Scheduler.Controllers.DepartmentWorkController",
-    "Method": "ExportToExcel",
-    "RelativePath": "api/DepartmentWork/ExportToExcel/{id}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+      },
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "departmentWork",
+        "Type": "Scheduler.Model.DepartmentWork",
         "IsRequired": true
       }
     ],
