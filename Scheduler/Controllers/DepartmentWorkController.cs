@@ -12,6 +12,8 @@ namespace Scheduler.Controllers
     {
         private ApplicationContext db;
         IDepartmentWorkProcessService _departmentWorkProcessService;
+        private byte[] fileContent;
+
         public DepartmentWorkController(ApplicationContext context, IDepartmentWorkProcessService departmentWorkProcessService)
         {
             db = context;
@@ -47,7 +49,23 @@ namespace Scheduler.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
-
+        [HttpPost("ExportToExcel/{id}")]
+        public async Task<IActionResult> ExportToExcel(int id)
+        {
+            try
+            {
+                // Получаем файл Excel с данными по идентификатору
+              //  var fileContent = await _departmentWorkProcessService.ExportToExcel(id);
+           
+                // Отправляем файл Excel в ответе
+                return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DepartmentWork.xlsx");
+            }
+            catch (Exception ex)
+            {
+                // В случае ошибки возвращаем код состояния 500 и сообщение об ошибке
+                return StatusCode(500, ex.Message);
+            }
+        }
         [HttpPut]
         public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
         {
