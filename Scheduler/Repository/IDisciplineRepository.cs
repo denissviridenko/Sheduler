@@ -7,7 +7,7 @@ namespace Scheduler.Repository
     {
         public Task<ActionResult<IEnumerable<Discipline>>> GetAllDisciplines();
 
-        public Task<ActionResult<Discipline>> GetDisciplineById(int id);
+        public Task<Discipline> GetDisciplineById(int id);
 
         public Task<ActionResult<Discipline>> CreateDiscipline(Discipline discipline);
 

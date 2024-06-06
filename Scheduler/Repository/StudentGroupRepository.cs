@@ -20,15 +20,10 @@ namespace Scheduler.Repository
         {
             return await db.StudentGroups.ToListAsync();
         }
-        public async Task<ActionResult<StudentGroup>> GetGroupById(int id)
+        public async Task<StudentGroup> GetGroupById(int id)
         {
             var group = await db.Set<StudentGroup>().FindAsync(id);
-            if (group == null)
-            {
-                return new NotFoundResult();
-            }
-
-            return new ActionResult<StudentGroup>(group);
+            return group;
         }
 
 

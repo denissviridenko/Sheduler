@@ -54,8 +54,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dw",
-        "Type": "Scheduler.Model.DepartmentWork",
+        "Name": "updateModel",
+        "Type": "Scheduler.Controllers.DepartmentWorkController\u002BDepartmentWorkUpdateModel",
         "IsRequired": true
       }
     ],
@@ -134,11 +134,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "departmentWork",
-        "Type": "Scheduler.Model.DepartmentWork",
         "IsRequired": true
       }
     ],

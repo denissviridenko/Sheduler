@@ -18,7 +18,7 @@ namespace Scheduler.Controllers
         IStudentGroupRepository _groupRepository;
         IDisciplineRepository _disciplineRepository;
 
-        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService , IStudentGroupRepository groupRepository, IDisciplineRepository disciplineRepository)
+        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService, IStudentGroupRepository groupRepository, IDisciplineRepository disciplineRepository)
         {
             db = context;
             _departmentWorkProcessService = departmentWorkProcessService;
@@ -65,6 +65,7 @@ namespace Scheduler.Controllers
             }
         }
 
+
         [HttpPost]
         public async Task<ActionResult<DepartmentWork>> Post(DepartmentWork dw)
         {
@@ -79,25 +80,37 @@ namespace Scheduler.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
-
-        [HttpPut()]
-        public async Task<ActionResult<DepartmentWork>> Put(int id, DepartmentWork dw, Discipline discipline, StudentGroup studentGroup)
+        public class DepartmentWorkUpdateModel
         {
-            if (dw == null || dw.Id == 0)
+            public DepartmentWork DepartmentWork { get; set; }
+            public int DisciplineID { get; set; }
+            public int StudentGroupID { get; set; }
+
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<DepartmentWork>> Put([FromBody] DepartmentWorkUpdateModel updateModel)
+        {
+            if (updateModel.DepartmentWork == null || updateModel.DepartmentWork.Id == 0)
             {
                 return BadRequest("DepartmentWork ID is required for update.");
             }
 
-            if (!db.DepartmentWorks.Any(x => x.Id == dw.Id))
+            if (!db.DepartmentWorks.Any(x => x.Id == updateModel.DepartmentWork.Id))
             {
                 return NotFound("DepartmentWork not found.");
             }
 
-            var group = await _groupRepository.GetGroupById(id);
-            var disciplines = await _disciplineRepository.GetDisciplineById(id);
+
+            StudentGroup group = await _groupRepository.GetGroupById(updateModel.StudentGroupID);
+            if (group == null)
+            {
+                return new NotFoundResult();
+            }
+            Discipline disciplines = await _disciplineRepository.GetDisciplineById(updateModel.DisciplineID);
 
             // Пересчет параметров
-            var updatedDepartmentWork = _departmentWorkProcessService.CalculateParams(dw, studentGroup, discipline);
+            var updatedDepartmentWork = _departmentWorkProcessService.CalculateParams(updateModel.DepartmentWork,  group, disciplines);
 
             // Обновление существующей записи в базе данных
             db.Entry(updatedDepartmentWork).State = EntityState.Modified;

@@ -17,10 +17,10 @@ namespace Scheduler.Repository
             return await db.Disciplines.ToListAsync();
         }
 
-        public async Task<ActionResult<Discipline>> GetDisciplineById(int id)
+        public async Task<Discipline> GetDisciplineById(int id)
         {
             Discipline discipline = await db.Disciplines.FirstOrDefaultAsync(x => x.Id == id);
-            return new ObjectResult(discipline);
+            return discipline;
         }
 
         public async Task<ActionResult<Discipline>> CreateDiscipline(Discipline discipline)

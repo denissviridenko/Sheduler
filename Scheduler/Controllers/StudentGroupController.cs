@@ -93,7 +93,7 @@ namespace Scheduler.Controllers
         public async Task<ActionResult> Delete(int groupId)
         {
             var groupResult = await _groupRepository.GetGroupById(groupId);
-            if (groupResult == null || groupResult.Value == null)
+            if (groupResult == null )
             {
                 return NotFound();
             }
