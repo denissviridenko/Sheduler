@@ -80,7 +80,7 @@ namespace Scheduler.Controllers
             return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut()]
         public async Task<ActionResult<DepartmentWork>> Put(int id, DepartmentWork dw, Discipline discipline, StudentGroup studentGroup)
         {
             if (dw == null || dw.Id == 0)
