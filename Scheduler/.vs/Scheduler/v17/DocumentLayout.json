@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\controllers\\departmentworkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:controllers\\departmentworkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\repository\\idepartmentworkrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:repository\\idepartmentworkrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\repository\\departmentworkrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:repository\\departmentworkrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\controllers\\departmentworkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|solutionrelative:controllers\\departmentworkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44B37D45-AB78-4C0A-9C42-5D5733BAFD29}|Scheduler.csproj|c:\\users\\asus\\source\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\scheduler\\controllers\\studentgroupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,24 +98,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "DepartmentWorkController.cs",
               "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
               "RelativeDocumentMoniker": "Controllers\\DepartmentWorkController.cs",
               "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
               "RelativeToolTip": "Controllers\\DepartmentWorkController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwCkAAAAPAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAwB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T20:08:16.004Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DepartmentWorkRepository.cs",
               "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Repository\\DepartmentWorkRepository.cs",
               "RelativeDocumentMoniker": "Repository\\DepartmentWorkRepository.cs",
@@ -154,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "IDepartmentWorkRepository.cs",
               "DocumentMoniker": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Repository\\IDepartmentWorkRepository.cs",
               "RelativeDocumentMoniker": "Repository\\IDepartmentWorkRepository.cs",

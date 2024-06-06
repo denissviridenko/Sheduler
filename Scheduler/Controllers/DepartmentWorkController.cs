@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Scheduler.Model;
@@ -14,12 +15,16 @@ namespace Scheduler.Controllers
         private ApplicationContext db;
         IDepartmentWorkProcessService _departmentWorkProcessService;
         IDepartmentWorkRepository _departmentWorkRepository;
-       
-        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService )
+        IStudentGroupRepository _groupRepository;
+        IDisciplineRepository _disciplineRepository;
+
+        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService , IStudentGroupRepository groupRepository, IDisciplineRepository disciplineRepository)
         {
             db = context;
             _departmentWorkProcessService = departmentWorkProcessService;
             _departmentWorkRepository = departmentWorkRepository;
+            _groupRepository = groupRepository;
+            _disciplineRepository = disciplineRepository;
         }
 
         [HttpGet]
@@ -75,8 +80,8 @@ namespace Scheduler.Controllers
             return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<DepartmentWork>> Put(int id, DepartmentWork dw, Discipline discipline, StudentGroup studentGroup)
         {
             if (dw == null || dw.Id == 0)
             {
@@ -88,12 +93,19 @@ namespace Scheduler.Controllers
                 return NotFound("DepartmentWork not found.");
             }
 
+            var group = await _groupRepository.GetGroupById(id);
+            var disciplines = await _disciplineRepository.GetDisciplineById(id);
+
+            // Пересчет параметров
+            var updatedDepartmentWork = _departmentWorkProcessService.CalculateParams(dw, studentGroup, discipline);
+
             // Обновление существующей записи в базе данных
-            db.Entry(dw).State = EntityState.Modified;
+            db.Entry(updatedDepartmentWork).State = EntityState.Modified;
             await db.SaveChangesAsync();
 
-            return Ok(dw);
+            return Ok(updatedDepartmentWork);
         }
+
 
 
         [HttpDelete("{id}")]
