@@ -80,16 +80,16 @@ namespace Scheduler.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
-        public class DepartmentWorkUpdateModel
+      /*  public class DepartmentWorkUpdateModel
         {
             public DepartmentWork DepartmentWork { get; set; }
             public int DisciplineID { get; set; }
             public int StudentGroupID { get; set; }
 
-        }
+        }*/
         
 
-        [HttpPut]
+      /*  [HttpPut]
         public async Task<ActionResult<DepartmentWork>> Put([FromBody] DepartmentWorkUpdateModel updateModel)
         {
             if (updateModel.DepartmentWork == null || updateModel.DepartmentWork.Id == 0)
@@ -118,8 +118,20 @@ namespace Scheduler.Controllers
             await db.SaveChangesAsync();
 
             return Ok(updatedDepartmentWork);
-        }
+        }*/
 
+        [HttpPut]
+        public async Task<ActionResult<Discipline>> Put(Discipline discipline)
+        {
+            if (discipline == null)
+            {
+                return BadRequest();
+            }
+
+            await _disciplineRepository.UpdateDiscipline(discipline);
+
+            return Ok(discipline);
+        }
 
 
         [HttpDelete("{id}")]
