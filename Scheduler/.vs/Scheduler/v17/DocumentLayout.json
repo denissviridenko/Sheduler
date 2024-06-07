@@ -112,7 +112,7 @@
               "RelativeDocumentMoniker": "Controllers\\DepartmentWorkController.cs",
               "ToolTip": "C:\\Users\\Asus\\source\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Scheduler\\Controllers\\DepartmentWorkController.cs",
               "RelativeToolTip": "Controllers\\DepartmentWorkController.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAAFkAAAAAAAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAFYAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T20:08:16.004Z",
               "EditorCaption": ""
@@ -127,8 +127,7 @@
               "RelativeToolTip": "Repository\\DisciplineRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:54:55.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:54:55.753Z"
             },
             {
               "$type": "Document",
@@ -140,8 +139,7 @@
               "RelativeToolTip": "Repository\\StudentGroupRepository.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAASwBgAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:55:29.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:55:29.886Z"
             },
             {
               "$type": "Document",
@@ -153,8 +151,7 @@
               "RelativeToolTip": "Controllers\\StudentGroupController.cs",
               "ViewState": "AQIAAE8AAAAAAAAAAAAYwFsAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:26:41.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:26:41.262Z"
             },
             {
               "$type": "Document",
@@ -166,8 +163,7 @@
               "RelativeToolTip": "Model\\DepartmentWork.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T08:03:18.417Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T08:03:18.417Z"
             },
             {
               "$type": "Document",
@@ -179,8 +175,7 @@
               "RelativeToolTip": "Repository\\IDisciplineRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAuwAkAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:54:28.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:54:28.685Z"
             },
             {
               "$type": "Document",
@@ -192,8 +187,7 @@
               "RelativeToolTip": "Repository\\IStudentGroupRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:54:26.969Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:54:26.969Z"
             },
             {
               "$type": "Document",
@@ -205,8 +199,7 @@
               "RelativeToolTip": "Services\\DepartmentWorkProcessService.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAApwBMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:53:52.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:53:52.256Z"
             },
             {
               "$type": "Document",
@@ -218,8 +211,7 @@
               "RelativeToolTip": "Services\\IDepartmentWorkProcessService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:54:10.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:54:10.127Z"
             },
             {
               "$type": "Document",
@@ -231,8 +223,7 @@
               "RelativeToolTip": "Model\\Discipline.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAAAAgAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T08:03:29.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T08:03:29.508Z"
             },
             {
               "$type": "Document",
@@ -244,8 +235,7 @@
               "RelativeToolTip": "Controllers\\DisciplineController.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAUwCsAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T16:03:14.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T16:03:14.912Z"
             },
             {
               "$type": "Document",
@@ -257,8 +247,7 @@
               "RelativeToolTip": "Services\\IStudentGroupProcessService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T14:51:12.261Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T14:51:12.261Z"
             },
             {
               "$type": "Document",
@@ -270,8 +259,7 @@
               "RelativeToolTip": "Model\\StudentGroup.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T16:08:32.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T16:08:32.775Z"
             },
             {
               "$type": "Document",
@@ -283,8 +271,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAAAC8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T08:15:15.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T08:15:15.268Z"
             },
             {
               "$type": "Document",
@@ -296,8 +283,7 @@
               "RelativeToolTip": "Repository\\DepartmentWorkRepository.cs",
               "ViewState": "AQIAACsAAAAAAAAAAAAmwGgAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T17:19:04.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T17:19:04.049Z"
             },
             {
               "$type": "Document",
@@ -309,8 +295,7 @@
               "RelativeToolTip": "docker-compose.yml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-06-03T18:56:24.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T18:56:24.685Z"
             },
             {
               "$type": "Document",
@@ -322,8 +307,7 @@
               "RelativeToolTip": "Services\\StudentGroupProcessService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADUAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T14:51:13.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T14:51:13.332Z"
             },
             {
               "$type": "Document",
@@ -335,8 +319,7 @@
               "RelativeToolTip": "ApplicationContext.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAAzwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-06T20:04:20.793Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-06T20:04:20.793Z"
             },
             {
               "$type": "Document",
@@ -348,8 +331,7 @@
               "RelativeToolTip": "Repository\\IDepartmentWorkRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAwBUAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:54:30.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T15:54:30.608Z"
             },
             {
               "$type": "Document",
