@@ -5,6 +5,7 @@ using Scheduler.Services;
 using Scheduler.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Scheduler.Controllers
 {
@@ -49,12 +50,13 @@ namespace Scheduler.Controllers
                 return BadRequest("Student group data is null.");
             }
 
-            var createdGroup = await _groupRepository.CreateGroup(studentGroup);
-            if (createdGroup == null)
+            var createdGroupResult = await _groupRepository.CreateGroup(studentGroup);
+            if (createdGroupResult == null)
             {
                 return BadRequest("Failed to create the student group.");
             }
 
+            var createdGroup = createdGroupResult.Value;
             var updatedGroup = _groupProcessService.CalculateParams(createdGroup);
             await _groupRepository.UpdateGroup(updatedGroup);
 
@@ -69,27 +71,34 @@ namespace Scheduler.Controllers
                 return BadRequest("Invalid student group data.");
             }
 
-            var calculatedGroup = _groupProcessService.CalculateParams(studentGroup);
-            var updatedGroup = await _groupRepository.UpdateGroup(calculatedGroup);
+            var result = await _groupProcessService.ProcessGroupInfo(studentGroup, false);
 
-            if (updatedGroup == null)
+            if (result == null || result.Value == null)
+            {
+                return BadRequest("Failed to update the student group.");
+            }
+            var updatedGroup = result.Value;
+            var calculatedGroup = _groupProcessService.CalculateParams(updatedGroup);
+            var updatedResult = await _groupRepository.UpdateGroup(calculatedGroup);
+
+            if (updatedResult == null || updatedResult.Value == null)
             {
                 return NotFound($"Group with ID {studentGroup.Id} not found.");
             }
 
-            return Ok(updatedGroup);
+            return Ok(updatedResult.Value);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+            [HttpDelete("{groupId}")]
+          public async Task<ActionResult> Delete(int groupId)
         {
-            var group = await _groupRepository.GetGroupById(id);
-            if (group == null)
+            var groupResult = await _groupRepository.GetGroupById(groupId);
+            if (groupResult == null)
             {
                 return NotFound();
             }
 
-            await _groupRepository.DeleteGroup(id);
+            await _groupRepository.DeleteGroup(groupId);
             return NoContent();
         }
     }

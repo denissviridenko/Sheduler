@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Scheduler.Model;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +9,46 @@ namespace Scheduler.Repository
 {
     public class StudentGroupRepository : IStudentGroupRepository
     {
-        private readonly ApplicationContext db;
+        private ApplicationContext db;
 
         public StudentGroupRepository(ApplicationContext context)
         {
             db = context;
         }
 
-        public async Task<IEnumerable<StudentGroup>> GetAllGroups()
+        public async Task<ActionResult<IEnumerable<StudentGroup>>> GetAllGroups()
         {
             return await db.StudentGroups.ToListAsync();
         }
-
         public async Task<StudentGroup> GetGroupById(int id)
         {
-            return await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == id);
+            var group = await db.Set<StudentGroup>().FindAsync(id);
+            return group;
         }
 
-        public async Task<StudentGroup> CreateGroup(StudentGroup studentGroup)
+
+        /*  public async Task<ActionResult<StudentGroup>> GetGroupById(int id)
+          {
+              StudentGroup studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == id);
+              return new ObjectResult(studentGroup);
+          }*/
+
+        public async Task<ActionResult<StudentGroup>> CreateGroup(StudentGroup studentGroup)
         {
             db.StudentGroups.Add(studentGroup);
             await db.SaveChangesAsync();
             return studentGroup;
         }
 
-        public async Task<StudentGroup> UpdateGroup(StudentGroup studentGroup)
+        public async Task<ActionResult<StudentGroup>> UpdateGroup(StudentGroup studentGroup)
         {
             db.StudentGroups.Update(studentGroup);
             await db.SaveChangesAsync();
             return studentGroup;
         }
-
-        public async Task<StudentGroup> DeleteGroup(int groupId)
+        public async Task<ActionResult<StudentGroup>> DeleteGroup(int groupId)
         {
-            var studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == groupId);
+            StudentGroup studentGroup = db.StudentGroups.FirstOrDefault(x => x.Id == groupId);
             if (studentGroup == null)
             {
                 return null;
@@ -53,7 +60,14 @@ namespace Scheduler.Repository
 
         public bool CheckIfGroupExists(StudentGroup studentGroup)
         {
-            return db.StudentGroups.Any(x => x.GroupName == studentGroup.GroupName);
+            if (!db.StudentGroups.Any(x => x.GroupName == studentGroup.GroupName))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private bool GroupExists(int id)
