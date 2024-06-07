@@ -55,7 +55,7 @@ namespace Scheduler.Controllers
                 return BadRequest("Failed to create the student group.");
             }
 
-            var createdGroup = createdGroupResult.Value;
+            var createdGroup = createdGroupResult;
             var updatedGroup = _groupProcessService.CalculateParams(createdGroup);
             await _groupRepository.UpdateGroup(updatedGroup);
 
@@ -69,27 +69,21 @@ namespace Scheduler.Controllers
                 return BadRequest("Invalid student group data.");
             }
 
-            var result = await _groupProcessService.ProcessGroupInfo(studentGroup, false);
-            if (result == null || result.Value == null)
-            {
-                return BadRequest("Failed to update the student group.");
-            }
 
-            var updatedGroup = result.Value;
-            var calculatedGroup = _groupProcessService.CalculateParams(updatedGroup);
+            var calculatedGroup = _groupProcessService.CalculateParams(studentGroup);
             var updatedResult = await _groupRepository.UpdateGroup(calculatedGroup);
 
-            if (updatedResult == null || updatedResult.Value == null)
-            {
+            if (updatedResult == null || updatedResult   == null)
+            {   
                 return NotFound($"Group with ID {studentGroup.Id} not found.");
             }
 
-            return Ok(updatedResult.Value);
+            return Ok(updatedResult);
         }
 
 
 
-        [HttpDelete("{groupId}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int groupId)
         {
             var groupResult = await _groupRepository.GetGroupById(groupId);

@@ -15,16 +15,13 @@ namespace Scheduler.Controllers
         private ApplicationContext db;
         IDepartmentWorkProcessService _departmentWorkProcessService;
         IDepartmentWorkRepository _departmentWorkRepository;
-        IStudentGroupRepository _groupRepository;
-        IDisciplineRepository _disciplineRepository;
 
-        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService, IStudentGroupRepository groupRepository, IDisciplineRepository disciplineRepository)
+        public DepartmentWorkController(ApplicationContext context, IDepartmentWorkRepository departmentWorkRepository, IDepartmentWorkProcessService departmentWorkProcessService)
         {
             db = context;
             _departmentWorkProcessService = departmentWorkProcessService;
             _departmentWorkRepository = departmentWorkRepository;
-            _groupRepository = groupRepository;
-            _disciplineRepository = disciplineRepository;
+
         }
 
         [HttpGet]
@@ -80,45 +77,45 @@ namespace Scheduler.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = dw.Id }, dw);
         }
-      /*  public class DepartmentWorkUpdateModel
-        {
-            public DepartmentWork DepartmentWork { get; set; }
-            public int DisciplineID { get; set; }
-            public int StudentGroupID { get; set; }
+        /*  public class DepartmentWorkUpdateModel
+          {
+              public DepartmentWork DepartmentWork { get; set; }
+              public int DisciplineID { get; set; }
+              public int StudentGroupID { get; set; }
 
-        }*/
-        
-
-      /*  [HttpPut]
-        public async Task<ActionResult<DepartmentWork>> Put([FromBody] DepartmentWorkUpdateModel updateModel)
-        {
-            if (updateModel.DepartmentWork == null || updateModel.DepartmentWork.Id == 0)
-            {
-                return BadRequest("DepartmentWork ID is required for update.");
-            }
-
-            if (!db.DepartmentWorks.Any(x => x.Id == updateModel.DepartmentWork.Id))
-            {
-                return NotFound("DepartmentWork not found.");
-            }
+          }*/
 
 
-            StudentGroup group = await _groupRepository.GetGroupById(updateModel.StudentGroupID);
-            if (group == null)
-            {
-                return new NotFoundResult();
-            }
-            Discipline disciplines = await _disciplineRepository.GetDisciplineById(updateModel.DisciplineID);
+        /*  [HttpPut]
+          public async Task<ActionResult<DepartmentWork>> Put([FromBody] DepartmentWorkUpdateModel updateModel)
+          {
+              if (updateModel.DepartmentWork == null || updateModel.DepartmentWork.Id == 0)
+              {
+                  return BadRequest("DepartmentWork ID is required for update.");
+              }
 
-            // Пересчет параметров
-            var updatedDepartmentWork = _departmentWorkProcessService.CalculateParams(updateModel.DepartmentWork,  group, disciplines);
+              if (!db.DepartmentWorks.Any(x => x.Id == updateModel.DepartmentWork.Id))
+              {
+                  return NotFound("DepartmentWork not found.");
+              }
 
-            // Обновление существующей записи в базе данных
-            db.Entry(updatedDepartmentWork).State = EntityState.Modified;
-            await db.SaveChangesAsync();
 
-            return Ok(updatedDepartmentWork);
-        }*/
+              StudentGroup group = await _groupRepository.GetGroupById(updateModel.StudentGroupID);
+              if (group == null)
+              {
+                  return new NotFoundResult();
+              }
+              Discipline disciplines = await _disciplineRepository.GetDisciplineById(updateModel.DisciplineID);
+
+              // Пересчет параметров
+              var updatedDepartmentWork = _departmentWorkProcessService.CalculateParams(updateModel.DepartmentWork,  group, disciplines);
+
+              // Обновление существующей записи в базе данных
+              db.Entry(updatedDepartmentWork).State = EntityState.Modified;
+              await db.SaveChangesAsync();
+
+              return Ok(updatedDepartmentWork);
+          }*/
 
         [HttpPut]
         public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
