@@ -87,6 +87,7 @@ namespace Scheduler.Controllers
             public int StudentGroupID { get; set; }
 
         }
+        
 
         [HttpPut]
         public async Task<ActionResult<DepartmentWork>> Put([FromBody] DepartmentWorkUpdateModel updateModel)
