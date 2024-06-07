@@ -121,16 +121,16 @@ namespace Scheduler.Controllers
         }*/
 
         [HttpPut]
-        public async Task<ActionResult<Discipline>> Put(Discipline discipline)
+        public async Task<ActionResult<DepartmentWork>> Put(DepartmentWork dw)
         {
-            if (discipline == null)
+            if (dw == null)
             {
                 return BadRequest();
             }
 
-            await _disciplineRepository.UpdateDiscipline(discipline);
+            await _departmentWorkRepository.UpdateDepartmentWork(dw);
 
-            return Ok(discipline);
+            return Ok(dw);
         }
 
 
