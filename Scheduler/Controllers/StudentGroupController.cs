@@ -33,7 +33,6 @@ namespace Scheduler.Controllers
         public async Task<ActionResult<StudentGroup>> Get(int id)
         {
             var group = await _groupRepository.GetGroupById(id);
-
             if (group == null)
             {
                 return NotFound();
@@ -45,11 +44,6 @@ namespace Scheduler.Controllers
         [HttpPost]
         public async Task<ActionResult<StudentGroup>> Post(StudentGroup studentGroup)
         {
-            if (studentGroup == null)
-            {
-                return BadRequest("Student group data is null.");
-            }
-
             var createdGroupResult = await _groupRepository.CreateGroup(studentGroup);
             if (createdGroupResult == null)
             {
@@ -58,8 +52,8 @@ namespace Scheduler.Controllers
 
             var createdGroup = createdGroupResult.Value;
             var updatedGroup = _groupProcessService.CalculateParams(createdGroup);
-            await _groupRepository.UpdateGroup(updatedGroup);
 
+            await _groupRepository.UpdateGroup(updatedGroup);
             return CreatedAtAction(nameof(Get), new { id = updatedGroup.Id }, updatedGroup);
         }
 
@@ -89,8 +83,8 @@ namespace Scheduler.Controllers
             return Ok(updatedResult.Value);
         }
 
-            [HttpDelete("{groupId}")]
-          public async Task<ActionResult> Delete(int groupId)
+        [HttpDelete("{groupId}")]
+        public async Task<ActionResult> Delete(int groupId)
         {
             var groupResult = await _groupRepository.GetGroupById(groupId);
             if (groupResult == null)

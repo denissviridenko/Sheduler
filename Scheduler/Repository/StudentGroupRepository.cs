@@ -22,8 +22,9 @@ namespace Scheduler.Repository
         }
         public async Task<StudentGroup> GetGroupById(int id)
         {
-            var group = await db.Set<StudentGroup>().FindAsync(id);
-            return group;
+            StudentGroup studentGroup = await db.StudentGroups.FirstOrDefaultAsync(x => x.Id == id);
+          
+            return studentGroup;
         }
 
 
