@@ -7,7 +7,7 @@ namespace Scheduler.Repository
     {
         public Task<ActionResult<IEnumerable<StudentGroup>>> GetAllGroups();
 
-        public Task<StudentGroup> GetGroupById(int id);
+        public Task<ActionResult<StudentGroup>> GetGroupById(int id);
 
         public Task<ActionResult<StudentGroup>> CreateGroup(StudentGroup studentGroup);
 
