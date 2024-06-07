@@ -49,18 +49,18 @@ namespace Scheduler.Controllers
                 return BadRequest("Student group data is null.");
             }
 
-            var createdGroupResult = await _groupRepository.CreateGroup(studentGroup);
-            if (createdGroupResult == null)
+            var createdGroup = await _groupRepository.CreateGroup(studentGroup);
+            if (createdGroup == null)
             {
                 return BadRequest("Failed to create the student group.");
             }
 
-            var createdGroup = createdGroupResult;
             var updatedGroup = _groupProcessService.CalculateParams(createdGroup);
             await _groupRepository.UpdateGroup(updatedGroup);
 
             return CreatedAtAction(nameof(Get), new { id = updatedGroup.Id }, updatedGroup);
         }
+
         [HttpPut]
         public async Task<ActionResult<StudentGroup>> Put(StudentGroup studentGroup)
         {
@@ -69,30 +69,27 @@ namespace Scheduler.Controllers
                 return BadRequest("Invalid student group data.");
             }
 
-
             var calculatedGroup = _groupProcessService.CalculateParams(studentGroup);
-            var updatedResult = await _groupRepository.UpdateGroup(calculatedGroup);
+            var updatedGroup = await _groupRepository.UpdateGroup(calculatedGroup);
 
-            if (updatedResult == null || updatedResult   == null)
-            {   
+            if (updatedGroup == null)
+            {
                 return NotFound($"Group with ID {studentGroup.Id} not found.");
             }
 
-            return Ok(updatedResult);
+            return Ok(updatedGroup);
         }
 
-
-
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int groupId)
+        public async Task<ActionResult> Delete(int id)
         {
-            var groupResult = await _groupRepository.GetGroupById(groupId);
-            if (groupResult == null )
+            var group = await _groupRepository.GetGroupById(id);
+            if (group == null)
             {
                 return NotFound();
             }
 
-            await _groupRepository.DeleteGroup(groupId);
+            await _groupRepository.DeleteGroup(id);
             return NoContent();
         }
     }

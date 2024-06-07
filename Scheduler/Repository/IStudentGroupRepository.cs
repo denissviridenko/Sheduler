@@ -1,20 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Scheduler.Model;
+﻿using Scheduler.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Scheduler.Repository
 {
     public interface IStudentGroupRepository
     {
-        public Task<IEnumerable<StudentGroup>> GetAllGroups();
-
-        public Task<StudentGroup> GetGroupById(int id);
-
-        public Task<StudentGroup> CreateGroup(StudentGroup studentGroup);
-
-        public Task<StudentGroup> UpdateGroup(StudentGroup studentGroup);
-     
-        public Task<StudentGroup> DeleteGroup(int groupId);
-
-        public bool CheckIfGroupExists(StudentGroup studentGroup);
+        Task<IEnumerable<StudentGroup>> GetAllGroups();
+        Task<StudentGroup> GetGroupById(int id);
+        Task<StudentGroup> CreateGroup(StudentGroup studentGroup);
+        Task<StudentGroup> UpdateGroup(StudentGroup studentGroup);
+        Task<StudentGroup> DeleteGroup(int groupId);
+        bool CheckIfGroupExists(StudentGroup studentGroup);
     }
 }

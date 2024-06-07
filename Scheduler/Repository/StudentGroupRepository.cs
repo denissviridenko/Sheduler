@@ -8,7 +8,7 @@ namespace Scheduler.Repository
 {
     public class StudentGroupRepository : IStudentGroupRepository
     {
-        private ApplicationContext db;
+        private readonly ApplicationContext db;
 
         public StudentGroupRepository(ApplicationContext context)
         {
